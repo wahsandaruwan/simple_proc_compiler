@@ -14,9 +14,9 @@ int yylex();
 int yywrap();
 
 /* Prototypes for symbol table */
-void add_symbol(char symbol);
+void add_symbol(char symbol_cat);
 void insert_type();
-int search_type(char *type);
+int search_type(char *symbol);
 
 /* Structure of the symbol table */
 struct dataType {
@@ -137,7 +137,7 @@ int main() {
 }
 
 /*  Search symbols */
-int search_type(char *type) {
+int search_type(char *symbol) {
 	int x;
 	for(x=count-1; x>=0; x--) {
 		if(strcmp(symbol_table[x].id_name, type)==0) {
@@ -149,39 +149,39 @@ int search_type(char *type) {
 }
 
 /* Adding the symbols to the symbol table */
-void add_symbol(char symbol){
+void add_symbol(char symbol_cat){
     query = search_type(yytext);
 
     if(!query){
-        if(symbol == 'H'){
+        if(symbol_cat == 'H'){
             symbol_table[count].id_name=strdup(yytext);
 			symbol_table[count].data_type=strdup(type);
 			symbol_table[count].line_no=countln;
 			symbol_table[count].symbol_type=strdup("Header");
 			count++;
         }
-        else if(symbol == 'K') {
+        else if(symbol_cat == 'K') {
 			symbol_table[count].id_name=strdup(yytext);
 			symbol_table[count].data_type=strdup("N/A");
 			symbol_table[count].line_no=countln;
 			symbol_table[count].symbol_type=strdup("Keyword\t");
 			count++;
 		}
-		else if(symbol == 'V') {
+		else if(symbol_cat == 'V') {
 			symbol_table[count].id_name=strdup(yytext);
 			symbol_table[count].data_type=strdup(type);
 			symbol_table[count].line_no=countln;
 			symbol_table[count].symbol_type=strdup("Variable");
 			count++;
 		}
-		else if(symbol == 'C') {
+		else if(symbol_cat == 'C') {
 			symbol_table[count].id_name=strdup(yytext);
 			symbol_table[count].data_type=strdup("CONST");
 			symbol_table[count].line_no=countln;
 			symbol_table[count].symbol_type=strdup("Constant");
 			count++;
 		}
-		else if(symbol == 'F') {
+		else if(symbol_cat == 'F') {
 			symbol_table[count].id_name=strdup(yytext);
 			symbol_table[count].data_type=strdup(type);
 			symbol_table[count].line_no=countln;

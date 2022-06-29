@@ -140,7 +140,7 @@ int main() {
 int search_type(char *symbol) {
 	int x;
 	for(x=count-1; x>=0; x--) {
-		if(strcmp(symbol_table[x].id_name, type)==0) {
+		if(strcmp(symbol_table[x].id_name, symbol)==0) {
 			return -1;
 			break;
 		}
@@ -191,7 +191,7 @@ void add_symbol(char symbol_cat){
     }
 }
 
-/* Copy the data type of the variable or function to the 'type' character array */
+/* Copy the data type of variables to the 'type' character array */
 void insert_type() {
 	strcpy(type, yytext);
 }

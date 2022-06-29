@@ -128,11 +128,7 @@ int main() {
 	for(i=0; i<count; i++) {
 		printf("%s\t%s\t%s\t%d\t\n", symbol_table[i].id_name, symbol_table[i].data_type, symbol_table[i].symbol_type, symbol_table[i].line_no);
 	}
-	for(i=0;i<count;i++) {
-		free(symbol_table[i].id_name);
-		free(symbol_table[i].symbol_type);
-	}
-
+    
 	printf("\n\n");
 }
 
